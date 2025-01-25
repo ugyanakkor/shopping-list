@@ -1,11 +1,13 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { MatCard, MatCardContent, MatCardHeader } from '@angular/material/card';
+import { MatDivider } from '@angular/material/divider';
 
 import { CartItem } from '../../interfaces/product.interface';
 import { ShoppingService } from '../../services/shopping.service';
 
 @Component({
   selector: 'app-cart',
-  imports: [],
+  imports: [MatCard, MatCardHeader, MatCardContent, MatDivider],
   standalone: true,
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss',
