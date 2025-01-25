@@ -1,17 +1,18 @@
+import { provideHttpClient } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { AppComponent } from '../../app.component';
 import { ProductsListComponent } from './products-list.component';
 
-describe('ProductsComponent', () => {
+describe('ProductsListComponent', () => {
   let fixture: ComponentFixture<ProductsListComponent>;
-  let component: AppComponent;
+  let component: ProductsListComponent;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [ProductsListComponent],
+      providers: [provideHttpClient()],
     });
 
     fixture = TestBed.createComponent(ProductsListComponent);
