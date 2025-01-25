@@ -16,7 +16,7 @@ import { ShoppingService } from '../../services/shopping.service';
 export class CartComponent {
   public totalPrice = signal<number>(0);
   public cartItems = signal<Array<CartItem>>([]);
-  constructor(protected readonly shoppingService: ShoppingService) {
+  constructor(private readonly shoppingService: ShoppingService) {
     this.cartItems = shoppingService.cart;
 
     for (const cartItem of shoppingService.getCartItems()) {

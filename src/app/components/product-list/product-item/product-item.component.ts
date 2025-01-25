@@ -4,7 +4,7 @@ import { MatButton } from '@angular/material/button';
 import { MatFormField } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
 
-import { Product, ProductForm } from '../../../interfaces/product.interface';
+import { CartItem, Product, ProductForm } from '../../../interfaces/product.interface';
 import { ShoppingService } from '../../../services/shopping.service';
 
 @Component({
@@ -36,5 +36,24 @@ export class ProductItemComponent implements OnInit {
     // Replace the image source with the fallback image if the image fails to load
     const target = event.target as HTMLImageElement;
     target.src = this.fallbackImage;
+  }
+
+  public addToCart(product: Product, productForm: FormGroup<ProductForm>): void {
+    const amount = productForm.controls.amount.value;
+    const cart = this.shoppingService.cart;
+    if (amount <= product.availableAmount && amount >= product.minOrderAmount) {
+      product.availableAmount -= amount;
+
+      const cartProduct = cart().find((item: CartItem) => item.id === product.id);
+      if (cartProduct) {
+        cartProduct.amount += amount;
+      } else {
+        cart.update((cart: Array<CartItem>) => [...cart, { name: product.name, price: product.price, amount, id: product.id }]);
+      }
+    } else {
+      alert('Cannot add more than available or less than the minimum order amount.');
+    }
+
+    productForm.reset();
   }
 }
