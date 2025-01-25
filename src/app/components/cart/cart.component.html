@@ -1,1 +1,6 @@
-<p>cart works!</p>
+@for (item of cartItems(); track item) {
+  <p>{{ item.name }} - Amount: {{ item.amount }} - Total: ${{ item.price * item.amount }}</p>
+}
+
+<hr />
+<p>Total Price of the cart: €{{ totalPrice() }}</p>
