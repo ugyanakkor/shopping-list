@@ -2,7 +2,7 @@ import { TitleCasePipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButton } from '@angular/material/button';
-import { MatFormField } from '@angular/material/form-field';
+import { MatError, MatFormField, MatPrefix } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -11,7 +11,7 @@ import { ShoppingService } from '../../../services/shopping.service';
 
 @Component({
   selector: 'app-product-item',
-  imports: [MatFormField, ReactiveFormsModule, MatButton, MatInput, TitleCasePipe],
+  imports: [MatFormField, ReactiveFormsModule, MatButton, MatInput, TitleCasePipe, MatError, MatPrefix],
   templateUrl: './product-item.component.html',
   standalone: true,
   styleUrl: './product-item.component.scss',
@@ -32,7 +32,11 @@ export class ProductItemComponent implements OnInit {
     this.productForm = new FormGroup<ProductForm>({
       amount: new FormControl<number>(this.product().minOrderAmount, {
         nonNullable: true,
-        validators: [Validators.required],
+        validators: [
+          Validators.required,
+          Validators.min(this.product().minOrderAmount),
+          Validators.max(this.product().availableAmount),
+        ],
       }),
     });
   }
