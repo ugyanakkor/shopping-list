@@ -1,0 +1,23 @@
+@use 'typography/colors';
+
+.nav-bar {
+  display: flex;
+  background-color: colors.$nav-background-color;
+  padding: 8px 16px;
+
+  .nav-link {
+    color: colors.$nav-text-color;
+    text-decoration: none;
+    padding: 8px;
+    margin: 0 8px;
+
+    &:hover {
+      background-color: colors.$nav-hover-color;
+    }
+
+    &.active {
+      font-weight: bold;
+      background-color: colors.$nav-active-color;
+    }
+  }
+}
