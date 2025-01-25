@@ -3,6 +3,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { MatButton } from '@angular/material/button';
 import { MatFormField } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { CartItem, Product, ProductForm } from '../../../interfaces/product.interface';
 import { ShoppingService } from '../../../services/shopping.service';
@@ -21,7 +22,10 @@ export class ProductItemComponent implements OnInit {
 
   private fallbackImage = 'missing-image.jpg';
 
-  constructor(protected readonly shoppingService: ShoppingService) {}
+  constructor(
+    protected readonly shoppingService: ShoppingService,
+    private readonly snackBar: MatSnackBar,
+  ) {}
 
   public ngOnInit(): void {
     this.productForm = new FormGroup<ProductForm>({
@@ -48,8 +52,18 @@ export class ProductItemComponent implements OnInit {
       if (cartProduct) {
         cartProduct.amount += amount;
       } else {
-        cart.update((cart: Array<CartItem>) => [...cart, { name: product.name, price: product.price, amount, id: product.id }]);
+        cart.update((cart: Array<CartItem>) => [
+          ...cart,
+          { name: product.name, price: product.price, amount, id: product.id },
+        ]);
       }
+
+      this.snackBar.open(`${amount} ${product.name} added to the cart successfully!`, 'Close', {
+        duration: 3000,
+        horizontalPosition: 'center',
+        verticalPosition: 'bottom',
+        panelClass: ['custom-toast'],
+      });
     } else {
       alert('Cannot add more than available or less than the minimum order amount.');
     }
