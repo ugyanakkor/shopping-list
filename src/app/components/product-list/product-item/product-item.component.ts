@@ -49,29 +49,29 @@ export class ProductItemComponent implements OnInit {
 
   public addToCart(product: Product, productForm: FormGroup<ProductForm>): void {
     const amount = productForm.controls.amount.value;
-    const cart = this.shoppingService.cart;
     if (amount <= product.availableAmount && amount >= product.minOrderAmount) {
       product.availableAmount -= amount;
-
-      const cartProduct = cart().find((item: CartItem) => item.id === product.id);
-      if (cartProduct) {
-        cartProduct.amount += amount;
-      } else {
-        cart.update((cart: Array<CartItem>) => [
-          ...cart,
-          { name: product.name, price: product.price, amount, id: product.id },
-        ]);
-      }
-
-      this.snackBar.open(`${amount} ${product.name} added to the cart successfully!`, 'Close', {
-        duration: 3000,
-        horizontalPosition: 'center',
-        verticalPosition: 'bottom',
-        panelClass: ['custom-toast'],
-      });
     } else {
-      alert('Cannot add more than available or less than the minimum order amount.');
+      return;
     }
+
+    const cart = this.shoppingService.cart;
+    const existingCartItem = cart().find((item: CartItem) => item.id === product.id);
+    if (existingCartItem) {
+      existingCartItem.amount += amount;
+    } else {
+      cart.update((cart: Array<CartItem>) => [
+        ...cart,
+        { name: product.name, price: product.price, amount, id: product.id },
+      ]);
+    }
+
+    this.snackBar.open(`${amount} ${product.name} added to the cart successfully!`, 'Close', {
+      duration: 3000,
+      horizontalPosition: 'center',
+      verticalPosition: 'bottom',
+      panelClass: ['custom-toast'],
+    });
 
     productForm.reset();
   }

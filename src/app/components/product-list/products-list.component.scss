@@ -18,5 +18,9 @@ $product-gap: 16px;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: $product-gap;
     padding: 0;
+
+    li {
+      list-style-type: none;
+    }
   }
 }

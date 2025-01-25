@@ -18,7 +18,7 @@
         <input matInput type="number" [formControl]="productForm.controls.amount" />
         <span matTextPrefix>Amount:&nbsp;</span>
         @if (productForm.controls.amount.errors?.required) {
-          <mat-error>í Quantity is required. </mat-error>
+          <mat-error> Quantity is required. </mat-error>
         } @else if (productForm.controls.amount.errors?.min) {
           <mat-error> Minimum order is {{ product().minOrderAmount }}. </mat-error>
         } @else if (productForm.controls.amount.errors?.max) {
