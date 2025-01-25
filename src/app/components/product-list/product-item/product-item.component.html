@@ -1,0 +1,28 @@
+<form [formGroup]="productForm">
+  <div class="product-card">
+    <img [src]="product().img" alt="{{ product().name }}" (error)="onImageError($event)" />
+    <article class="product-content">
+      <h2>{{ product().name }}</h2>
+      <p>{{ product().availableAmount }} available</p>
+      <p>Minimum order amount: {{ product().minOrderAmount }}</p>
+      <p>
+        <strong>€{{ product().price.toFixed(2) }}</strong>
+      </p>
+      <mat-form-field>
+        <mat-label>Quantity</mat-label>
+        <input
+          #amount
+          matInput
+          type="number"
+          [formControl]="productForm.controls.amount"
+          min="{{ product().minOrderAmount }}"
+          [max]="product().availableAmount" />
+      </mat-form-field>
+    </article>
+    <footer class="product-actions">
+      <button mat-raised-button color="primary" (click)="shoppingService.addToCart(product(), productForm)">
+        Add to Cart
+      </button>
+    </footer>
+  </div>
+</form>

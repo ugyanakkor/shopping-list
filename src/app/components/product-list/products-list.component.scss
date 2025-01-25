@@ -1,0 +1,22 @@
+@use '../../typography/colors';
+
+$product-gap: 16px;
+
+.spinner-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.product-container {
+  margin: 0 auto;
+  padding: 30px;
+
+  .products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: $product-gap;
+    padding: 0;
+  }
+}

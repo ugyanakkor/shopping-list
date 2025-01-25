@@ -1,0 +1,13 @@
+@if (shoppingService.productsLoading()) {
+  <div class="spinner-wrapper">
+    <mat-spinner></mat-spinner>
+  </div>
+}
+
+<section class="product-container">
+  <ul class="products">
+    @for (product of products(); track product) {
+      <app-product-item [product]="product"></app-product-item>
+    }
+  </ul>
+</section>
