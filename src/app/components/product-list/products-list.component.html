@@ -7,7 +7,9 @@
 <section class="product-container">
   <ul class="products">
     @for (product of products(); track product) {
-      <app-product-item [product]="product"></app-product-item>
+      <li>
+        <app-product-item [product]="product"></app-product-item>
+      </li>
     }
   </ul>
 </section>
