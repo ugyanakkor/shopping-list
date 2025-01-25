@@ -9,14 +9,8 @@
         <strong>€{{ product().price.toFixed(2) }}</strong>
       </p>
       <mat-form-field appearance="fill">
-        <!-- label does not appear, so the input field look like a little bit weird, but this is a 2 year issue,
-             which workaround depended on earlier angular version. I use matTextPrefix to indicate what the
-             purpose of the input field is
-                https://github.com/angular/components/issues/26579
-        -->
         <mat-label>Amount</mat-label>
         <input matInput type="number" [formControl]="productForm.controls.amount" />
-        <span matTextPrefix>Amount:&nbsp;</span>
         @if (productForm.controls.amount.errors?.required) {
           <mat-error> Quantity is required. </mat-error>
         } @else if (productForm.controls.amount.errors?.min) {
