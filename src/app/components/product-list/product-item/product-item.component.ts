@@ -1,3 +1,4 @@
+import { TitleCasePipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButton } from '@angular/material/button';
@@ -10,7 +11,7 @@ import { ShoppingService } from '../../../services/shopping.service';
 
 @Component({
   selector: 'app-product-item',
-  imports: [MatFormField, ReactiveFormsModule, MatButton, MatInput],
+  imports: [MatFormField, ReactiveFormsModule, MatButton, MatInput, TitleCasePipe],
   templateUrl: './product-item.component.html',
   standalone: true,
   styleUrl: './product-item.component.scss',

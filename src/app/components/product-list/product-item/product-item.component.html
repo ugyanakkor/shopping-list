@@ -2,7 +2,7 @@
   <div class="product-card">
     <img [src]="product().img" alt="{{ product().name }}" (error)="onImageError($event)" />
     <article class="product-content">
-      <h2>{{ product().name }}</h2>
+      <h2>{{ product().name | titlecase }}</h2>
       <p>{{ product().availableAmount }} available</p>
       <p>Minimum order amount: {{ product().minOrderAmount }}</p>
       <p>
