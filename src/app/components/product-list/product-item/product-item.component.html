@@ -8,7 +8,11 @@
       <p>
         <strong>€{{ product().price.toFixed(2) }}</strong>
       </p>
-      <mat-form-field appearance="fill">
+      <mat-form-field
+        [ngClass]="{
+          'margin-bottom': productForm.controls.amount.errors?.max && !productForm.controls.amount.untouched,
+        }"
+        appearance="fill">
         <mat-label>Amount</mat-label>
         <input
           matInput
