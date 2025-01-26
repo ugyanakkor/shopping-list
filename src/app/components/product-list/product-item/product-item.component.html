@@ -1,5 +1,5 @@
 <form [formGroup]="productForm" (ngSubmit)="addToCart(product(), productForm)">
-  <div class="product-card">
+  <div class="product-card" data-testid="product-card">
     <img [src]="product().img" alt="{{ product().name }}" (error)="onImageError($event)" />
     <article class="product-content">
       <h2>{{ product().name | titlecase }}</h2>
@@ -10,7 +10,12 @@
       </p>
       <mat-form-field appearance="fill">
         <mat-label>Amount</mat-label>
-        <input matInput type="number" [formControl]="productForm.controls.amount" />
+        <input
+          matInput
+          type="number"
+          name="amount"
+          data-testid="amount-control"
+          [formControl]="productForm.controls.amount" />
         @if (productForm.controls.amount.errors?.required) {
           <mat-error> Quantity is required. </mat-error>
         } @else if (productForm.controls.amount.errors?.min) {
@@ -21,7 +26,7 @@
       </mat-form-field>
     </article>
     <footer>
-      <button mat-raised-button color="primary" type="submit">Add to Cart</button>
+      <button mat-raised-button color="primary" data-testid="submit" type="submit">Add to Cart</button>
     </footer>
   </div>
 </form>

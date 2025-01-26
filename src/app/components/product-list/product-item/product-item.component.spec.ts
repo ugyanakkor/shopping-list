@@ -6,7 +6,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { beforeEach, describe, expect, it } from 'vitest';
 
 import { Product, ProductForm } from '../../../interfaces/product.interface';
-import { mockProducts } from '../../../mocks/shopping-list.mock';
+import { productsMock } from '../../../mocks/shopping-list.mock';
 import { ProductItemComponent } from './product-item.component';
 
 describe('ProductItemComponent', () => {
@@ -28,7 +28,7 @@ describe('ProductItemComponent', () => {
   });
 
   it('should check minimum amount of the product', () => {
-    fixture.componentRef.setInput('product', mockProducts[0]);
+    fixture.componentRef.setInput('product', productsMock[0]);
     fixture.detectChanges();
     expect(component.productForm.controls.amount.value).toEqual(component.product().minOrderAmount);
   });

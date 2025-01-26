@@ -4,7 +4,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { mockCartItems, mockProducts } from '../mocks/shopping-list.mock';
+import { cartItemsMock, productsMock } from '../mocks/shopping-list.mock';
 import { ShoppingService } from './shopping.service';
 
 describe('ShoppingService', () => {
@@ -19,7 +19,7 @@ describe('ShoppingService', () => {
     httpMock = TestBed.inject(HttpTestingController);
 
     const req = httpMock.expectOne(service['apiUrl']);
-    req.flush(mockProducts);
+    req.flush(productsMock);
   });
 
   afterEach(() => {
@@ -32,12 +32,12 @@ describe('ShoppingService', () => {
 
   it('should product to be fetched from constructor', () => {
     expect(service.productsLoading()).toBe(false);
-    expect(service.products()).toEqual(mockProducts);
+    expect(service.products()).toEqual(productsMock);
   });
 
   it('should get the cart items from the service', () => {
     expect(service.getCartItems()).toEqual([]);
-    service.cart.set(mockCartItems);
-    expect(service.getCartItems()).toEqual(mockCartItems);
+    service.cart.set(cartItemsMock);
+    expect(service.getCartItems()).toEqual(cartItemsMock);
   });
 });

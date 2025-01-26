@@ -4,7 +4,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { Mock, vi } from 'vitest';
 
-import { mockCartItems } from '../../mocks/shopping-list.mock';
+import { cartItemsMock } from '../../mocks/shopping-list.mock';
 import { ShoppingService } from '../../services/shopping.service';
 import { CartComponent } from './cart.component';
 
@@ -18,8 +18,8 @@ describe('CartComponent', () => {
 
   beforeEach(() => {
     shoppingServiceMock = {
-      getCartItems: vi.fn(() => mockCartItems),
-      cart: signal(mockCartItems),
+      getCartItems: vi.fn(() => cartItemsMock),
+      cart: signal(cartItemsMock),
     };
 
     TestBed.configureTestingModule({
@@ -36,7 +36,7 @@ describe('CartComponent', () => {
   });
 
   it('should calculate the price of the items from cart', () => {
-    expect(component.cartItems()).toEqual(mockCartItems);
+    expect(component.cartItems()).toEqual(cartItemsMock);
     expect(component.totalPrice()).toEqual(9600);
   });
 });

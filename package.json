@@ -10,7 +10,7 @@
     "build": "vite build",
     "watch": "ng build --watch --configuration development",
     "test": "vitest",
-    "e2e": "ng e2e",
+    "e2e": "playwright test",
     "format": "prettier --write .",
     "lint": "npx stylelint \"**/*.scss\" && ng lint",
     "prepare": "husky"
