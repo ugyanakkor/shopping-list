@@ -1,5 +1,4 @@
 import { provideHttpClient } from '@angular/common/http';
-import { signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormControl, FormGroup } from '@angular/forms';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
@@ -29,8 +28,8 @@ describe('ProductItemComponent', () => {
   });
 
   it('should check minimum amount of the product', () => {
-    component.product = signal(mockProducts[0]);
-    component.ngOnInit();
+    fixture.componentRef.setInput('product', mockProducts[0]);
+    fixture.detectChanges();
     expect(component.productForm.controls.amount.value).toEqual(component.product().minOrderAmount);
   });
 
